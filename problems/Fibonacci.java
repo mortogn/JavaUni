@@ -6,6 +6,8 @@ public class Fibonacci {
 
         int n = sc.nextInt();
 
+        sc.close();
+
         int prev = 0;
         int current = 1;
 

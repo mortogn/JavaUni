@@ -19,6 +19,7 @@ public class Prime {
         Scanner sc = new Scanner(System.in);
         Prime p = new Prime();
 
+        sc.close();
         int num = sc.nextInt();
 
         if (p.isPrime(num)) {
