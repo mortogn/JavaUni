@@ -95,5 +95,7 @@ public class TicTacToe {
             currentPlayer = currentPlayer == 1 ? 2 : 1;
         }
 
+        sc.close();
+
     }
 }
