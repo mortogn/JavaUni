@@ -101,7 +101,32 @@ public class Bank {
 }
 ```
 
-#### 1.6 `this` keyword
+#### 1.6 Method overloading
+
+Method overloadding is when we have multiple method that share the same name but is different based on the parameters it accepts. The difference can either be data type of parameters, or the number of parameters.
+
+```java
+
+public class Overload {
+    static int add(int a, int b) {
+        return a + b;
+    }
+
+    static double add(double a, double b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+        // calls the first method because of int data type
+        int resultInt = add(1, 2);
+        // calls the second method because of double data type
+        double resultDouble = add(1.2, 2.2);
+    }
+}
+
+```
+
+#### 1.7 `this` keyword
 
 `this` keyword is used to access properties and/or method of a class. This is used to primarily avoid naming conflict. `this` access value of object instead of it being global to all objects of a class.
 
@@ -115,7 +140,32 @@ public class Bank {
 }
 ```
 
-#### 1.7 Inheritance in java
+`this` can also be used to call a constructor of a class.
+
+```java
+
+public class CallConstructor {
+
+    int count;
+
+    CallConstructor() {
+        System.out.println("Call Constructor");
+    }
+
+    CallConstructor(int count) {
+        this(); // Calling the first constructor to print 'Call Constructor'
+        this.count = 10;
+    }
+
+    public static void main(String[] args) {
+        // Second construstor is being called because of constructor overloading
+        CallConstructor cc = new CallConstructor(10);
+    }
+}
+
+```
+
+#### 1.8 Inheritance in java
 
 Inheritance is the way we can extend a class to have other properties and methods of a different class.
 
