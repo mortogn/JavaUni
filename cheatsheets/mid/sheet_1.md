@@ -84,3 +84,62 @@ public class Palindrome {
 }
 
 ```
+
+#### 1.5 Constructor
+
+Constructor is a special kind of method that runs when a class is initiated. It is primarily used to create an object with initial values.
+
+- Constructor must have the same name as the class.
+- Constructor does not have a return type (not even void).
+
+```java
+public class Bank {
+    // constructor
+    Bank() {
+        [...]
+    }
+}
+```
+
+#### 1.6 `this` keyword
+
+`this` keyword is used to access properties and/or method of a class. This is used to primarily avoid naming conflict. `this` access value of object instead of it being global to all objects of a class.
+
+```java
+public class Bank {
+    String name;
+
+    Bank(String name) {
+        this.name = name; // will set the value of instance variable `name`
+    }
+}
+```
+
+#### 1.7 Inheritance in java
+
+Inheritance is the way we can extend a class to have other properties and methods of a different class.
+
+```java
+// Person.java
+public class Person {
+    String name;
+    int age;
+
+    void showAge() {
+        [...]
+    }
+}
+
+// Student.java
+public class Student extends Person {
+    int id;
+    int semester;
+
+    void printInfo() {
+        System.out.println(id);
+        System.out.println(name); // accessed from `Person` class
+        showAge(); // accessed from `Person` class
+        System.out.println(semester);
+    }
+}
+```
