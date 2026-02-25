@@ -382,12 +382,38 @@ public class Fibonacci {
 
 XOR changes binary. Same binary (0 or 1) gets replaced by 0 and different binary (0 or 1) gets replaced by one. If 101 ^ 010, XOR returns 111.
 
-$$
-1 0 1
-0 1 0
------
-1 1 1
-$$
+Let's say for example `a = 9` and `b=12`
+Step 1: `a = a ^ b`
+
+|  8  |  4  |  2  |  1  |
+| :-: | :-: | :-: | :-: |
+|  1  |  0  |  0  |  1  |
+|  1  |  1  |  0  |  0  |
+|  0  |  1  |  0  |  1  |
+
+`a` is basically now `5` representing binary `101`.
+
+step 2: `b = a ^ b`
+
+|  8  |  4  |  2  |  1  |
+| :-: | :-: | :-: | :-: |
+|  0  |  1  |  0  |  1  |
+|  1  |  1  |  0  |  0  |
+|  1  |  0  |  0  |  1  |
+
+`b` is basically now `9` after changing the binary. Notice how b is now equal to a.
+
+step 3: `a = a ^ b`
+
+|  8  |  4  |  2  |  1  |
+| :-: | :-: | :-: | :-: |
+|  0  |  1  |  0  |  1  |
+|  1  |  0  |  0  |  1  |
+|  1  |  1  |  0  |  0  |
+
+`a` is now `12` after changing the birnary.
+
+After step 3, `a` and `b` have successfully swapped position.
 
 ```java
     int a = 13;
