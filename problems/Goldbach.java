@@ -5,6 +5,10 @@ public class Goldbach {
 
     static boolean isGoldbach(int n) {
 
+        // Goldback numbers must be greater than 2
+        if (n < 2)
+            return false;
+
         // Odd numbers can't be goldbach
         if (n % 2 != 0)
             return false;
