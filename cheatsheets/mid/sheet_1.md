@@ -193,3 +193,252 @@ public class Student extends Person {
     }
 }
 ```
+
+### 2. Number Theory
+
+#### 2.1 Prime numbers
+
+Prime number is a whole number that is greater than 1 and that can not be exactly divided by any numbers other than 1 and itself.
+
+```java
+    // method to check if a number is prime
+    boolean isPrime(int n) {
+        if (n < 2)
+            return false;
+
+        for (int i = 2; i * i < n; i++) {
+            if (n % i == 2) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+```
+
+#### 2.2 Armstrong Number
+
+A positive number that has `n` digits and the sum of each of their digit with a power of `n` is equal to the number.
+Example: 153. Since $1^3 + 5^3 + 3^3 = 153$
+
+```java
+import java.util.Scanner;
+
+public class Armstrong {
+
+    static boolean isArmstrong(int n) {
+        int count = 0, temp = n;
+
+        while (temp > 0) {
+            count++;
+            temp /= 10;
+        }
+
+        long total = 0;
+        temp = n;
+
+        while (temp > 0) {
+            int ld = temp % 10;
+            total += Math.pow(ld, count);
+            temp /= 10;
+        }
+
+        return total == n;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int num = sc.nextInt();
+
+        sc.close();
+
+        if (isArmstrong(num)) {
+            System.out.println(num + " is a Armstrong number.");
+        } else {
+            System.out.println(num + " is not a Armstrong number.");
+        }
+    }
+}
+```
+
+#### 2.3 Goldbach Number
+
+Goldbach numbers state that every even natural number greater than 2 is the sum of two prime numbers.
+Example: $4 = 2 + 2$, $6 = 3 + 3$
+
+```java
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Goldbach {
+
+    static boolean isGoldbach(int n) {
+
+        // Goldback numbers must be greater than 2
+        if (n < 2)
+            return false;
+
+        // Odd numbers can't be goldbach
+        if (n % 2 != 0)
+            return false;
+
+        boolean[] isPrime = new boolean[n + 1];
+
+        isPrime[0] = false;
+        isPrime[1] = false;
+
+        for (int i = 2; i <= n; i++) {
+            isPrime[i] = true;
+        }
+
+        for (int i = 2; i * i <= n; i++) {
+            if (isPrime[i]) {
+                for (int j = i * i; j <= n; j += i) {
+                    isPrime[j] = false;
+                }
+            }
+        }
+
+        ArrayList<Integer> primes = new ArrayList<Integer>();
+
+        // get the list of prime numbers
+        for (int i = 2; i <= n; i++) {
+            if (isPrime[i]) {
+                primes.add(i);
+            }
+        }
+
+        // check if a number is goldbach
+        for (int p = 0; p < primes.size(); p++) {
+            int left = n - primes.get(p);
+
+            if (isPrime[left]) {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.close();
+
+        if (isGoldbach(n)) {
+            [...]
+        }
+    }
+}
+
+```
+
+#### 2.4 Fibonacci
+
+Fibonacci is number series where the current number is the sum of two previous numbers. It usually starts from 0 and 1.
+
+$0, 1, 1, 2, 3, 5, 8, 13, ....$
+
+```java
+import java.util.Scanner;
+
+public class Fibonacci {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        sc.close();
+
+        int prev = 0;
+        int current = 1;
+
+        for (int i = 0; i < n; i++) {
+            System.out.print(prev + " ");
+            int temp = prev;
+            prev = current;
+            current += temp;
+        }
+    }
+}
+```
+
+### 3. Number swapping
+
+#### 3.1 Using normal sum
+
+```java
+    int a = 13;
+    int b = 5;
+
+    b = a + b; // 13 + 5 = 18
+    a = b - a; // 18 - 13 = 5 = b;
+    b = b - a; // 18 - 5 = 13 = a;
+```
+
+#### 3.2 Using Bitwise Operator XOR
+
+XOR changes binary. Same binary (0 or 1) gets replaced by 0 and different binary (0 or 1) gets replaced by one. If 101 ^ 010, XOR returns 111.
+
+$$
+1 0 1
+0 1 0
+-----
+1 1 1
+$$
+
+```java
+    int a = 13;
+    int b = 5;
+
+    a = a ^ b;
+    b = a ^ b;
+    a = a ^ b;
+```
+
+#### 4. Leap year Logic
+
+To check if a year is leap year or not, the follow logic needs to me.
+
+```java
+    boolean isLeapYear(int y) {
+        if (y % 400 == 0)
+            return true;
+        if (y % 100 == 0)
+            return false;
+        if (y % 4 == 0)
+            return true;
+
+        return false;
+    }
+```
+
+#### 5. Factorial of a number
+
+```java
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class Factorial {
+    BigInteger result = new BigInteger("1");
+
+    void factorial(int n) {
+        for (int i = 2; i <= n; i++) {
+            result = result.multiply(BigInteger.valueOf(i));
+        }
+    }
+
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.close();
+        Factorial fc = new Factorial();
+
+        fc.factorial(n);
+
+        System.out.println(n + "! = " + fc.result);
+    }
+}
+```
