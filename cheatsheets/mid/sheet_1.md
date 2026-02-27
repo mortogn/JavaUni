@@ -694,4 +694,6 @@ public class ArraySort {
 
 ### 9. UML (Unified Modeling Language) for Java
 
-![UML Diagram](./assets/Class-Diagram-example.webp)
+![UML Diagram](./assets/ClassDiagram.png)
+
+It is only required to create the mentioned properties. Implemention is not mandatory.
