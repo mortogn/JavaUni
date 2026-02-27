@@ -635,3 +635,63 @@ Our code will look like this,
             System.out.println();
         }
 ```
+
+### 8. Algorithm
+
+#### 8.1 Sieve of Eratosthenes
+
+To verify if a number is prime or no, or to get the list of prime numbers, this is a very optimized algorithm.
+
+```java
+        // Array to store all the prime number index
+        boolean[] isPrime = new boolean[n + 1];
+
+        isPrime[0] = false; // prime numbers are greater than 1
+        isPrime[1] = false;
+
+        // Set all the elements to false.
+        // We will assume all the numbers are prime and then mark all the non primes as false
+        for (int i = 2; i <= n; i++) {
+            isPrime[i] = true;
+        }
+
+        // If a number is prime, run a second loop to mark all the non primes numbers that is i*i
+        // if 5 is prime for example. 25, 30, .... all are non prime
+        for (int i = 2; i * i <= n; i++) {
+            if (isPrime[i]) {
+                for (int j = i * i; j <= n; j += i) {
+                    isPrime[j] = false;
+                }
+            }
+        }
+
+        // Optional: An arraylist to contain all the prime numbers
+        ArrayList<Integer> primes = new ArrayList<Integer>();
+
+        // get the list of prime numbers from our boolean array
+        for (int i = 2; i <= n; i++) {
+            if (isPrime[i]) {
+                primes.add(i);
+            }
+        }
+```
+
+#### 8.2 Sorting
+
+Java has built in method to sort arrays.
+
+```java
+import java.util.Arrays;
+
+public class ArraySort {
+    public static void main(String[] args) {
+        int[] numbers = { 5, 2, 9, 2, 4, 5 };
+
+        Arrays.sort(numbers);
+    }
+}
+```
+
+### 9. UML (Unified Modeling Language) for Java
+
+![UML Diagram](./assets/Class-Diagram-example.webp)
