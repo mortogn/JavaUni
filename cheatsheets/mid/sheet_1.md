@@ -135,7 +135,8 @@ public class Bank {
     String name;
 
     Bank(String name) {
-        this.name = name; // will set the value of instance variable `name`
+        // will set the value of instance variable `name`
+        this.name = name;
     }
 }
 ```
@@ -153,12 +154,14 @@ public class CallConstructor {
     }
 
     CallConstructor(int count) {
-        this(); // Calling the first constructor to print 'Call Constructor'
+        // Calling the first constructor to print 'Call Constructor'
+        this();
         this.count = 10;
     }
 
     public static void main(String[] args) {
-        // Second construstor is being called because of constructor overloading
+        /* Second construstor is being called
+        because of constructor overloading */
         CallConstructor cc = new CallConstructor(10);
     }
 }
@@ -469,6 +472,26 @@ public class Factorial {
 }
 ```
 
+### 6. Palindrome Number
+
+Palindrome is basically something that stays the same when reversed. Because of Number palindrome we can get last digit using `n % 10` and we can add that to a int variable using `reversed * 10 + ld;`
+
+Here is a working code,
+
+```java
+    static boolean isPalindrome(int n) {
+        int temp = n, reversed = 0;
+
+        while (temp > 0) {
+            int ld = temp % 10;
+            reversed = reversed * 10 + ld;
+            temp /= 10;
+        }
+
+        return n == reversed;
+    }
+```
+
 ### 7. Patterns
 
 #### 7.1 Pyramid Pattern
@@ -604,8 +627,11 @@ For a triangle like this,
 Our code will look like this,
 
 ```java
-        // We can either take row from the user or set a static value
-        // Using 2D array to generate Pascal triangle is the easy method
+        /*
+        - We can either take row from the user
+          or set a static value
+        - Using 2D array to generate Pascal triangle
+         is the easy method */
         int[][] arr = new int[row][row];
 
         for (int i = 0; i < row; i++) {
@@ -616,7 +642,8 @@ Our code will look like this,
             // loop to run in between 1st and last col
             for (int j = 1; j < i; j++) {
                 /*
-                Each column is the sum of the previous row's column and the column before it.
+                Each column is the sum of the previous row's column
+                and the column before it.
                 That why it's [i-1][j-1] and [i - 1][j]
                 */
                 arr[i][j] = arr[i - 1][j - 1] + arr[i - 1][j];
@@ -649,14 +676,20 @@ To verify if a number is prime or no, or to get the list of prime numbers, this 
         isPrime[0] = false; // prime numbers are greater than 1
         isPrime[1] = false;
 
-        // Set all the elements to false.
-        // We will assume all the numbers are prime and then mark all the non primes as false
+        /*
+        - Set all the elements to false.
+        - We will assume all the numbers are prime
+          and then mark all the non primes as false */
         for (int i = 2; i <= n; i++) {
             isPrime[i] = true;
         }
 
-        // If a number is prime, run a second loop to mark all the non primes numbers that is i*i
-        // if 5 is prime for example. 25, 30, .... all are non prime
+        /*
+        - If a number is prime,
+        run a second loop to mark all the non primes numbers
+        that is i*i
+        - if 5 is prime for example.
+        25, 30, .... all are non prime */
         for (int i = 2; i * i <= n; i++) {
             if (isPrime[i]) {
                 for (int j = i * i; j <= n; j += i) {
