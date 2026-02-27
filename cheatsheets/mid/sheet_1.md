@@ -697,3 +697,34 @@ public class ArraySort {
 ![UML Diagram](./assets/ClassDiagram.png)
 
 It is only required to create the mentioned properties. Implemention is not mandatory.
+From the image,
+
+1. **ClassName** is the name of the class we need to create.
+2. **Properties** are the variables. UML diagram will include the visiblitiy notation (private/public), variable name and data type. It may also include the initial value of the variable.
+3. **Methods** are also similar. UML diagram will include visiblity notation, method name, return type, parameters (if it's required). ==Diagram might have method name that is the same as the class name. In that case, it will be treated as a _constructor_.==
+4. **Inheritance** needs to be in focus as well. It shows which class will inherit what class.
+5. **Visiblity notation** will be showen in diagram with `+` and `-`. Here `+` means **Public** and `-` means **Private**. ==All the method and variables will follow this pattern.==
+
+==**Note:**== It is important to note that UML diagrams can contain,
+
+- Initial Value
+- Constructor
+- Method parameters and return type
+
+and all sorts of different things.
+
+#### 9.1 Visibility notation
+
+```java
+// for `+`
+public int age;
+public String gender;
+
+public boolean isMammal() {}
+public void mate() {}
+
+// for `-`
+private int sizeInFt;
+
+private void swim() {}
+```
