@@ -424,7 +424,7 @@ After step 3, `a` and `b` have successfully swapped position.
     a = a ^ b;
 ```
 
-#### 4. Leap year Logic
+### 4. Leap year Logic
 
 To check if a year is leap year or not, the follow logic needs to me.
 
@@ -441,7 +441,7 @@ To check if a year is leap year or not, the follow logic needs to me.
     }
 ```
 
-#### 5. Factorial of a number
+### 5. Factorial of a number
 
 ```java
 import java.math.BigInteger;
@@ -467,4 +467,171 @@ public class Factorial {
         System.out.println(n + "! = " + fc.result);
     }
 }
+```
+
+### 7. Patterns
+
+#### 7.1 Pyramid Pattern
+
+For a pattern like this
+
+```bash
+   *
+  ***
+ *****
+*******
+```
+
+This is the implementation
+
+```java
+        // ... other code
+        for (int i = 1; i <= n; i++) {
+            for (int s = n - i; s > 0; s--) {
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= i * 2 - 1; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+```
+
+#### 7.2 Pyramid Pattern (With space) / Half Diamond
+
+```bash
+   *
+  * *
+ * * *
+* * * *
+```
+
+This is the implementation.
+
+```java
+     for (int i = 1; i <= n; i++) {
+            for (int j = n - i; j > 0; j--) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= i; k++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+```
+
+#### 7.3 Diamond Pattern
+
+For a pattern like this,
+
+```bash
+   *
+  * *
+ * * *
+* * * *
+ * * *
+  * *
+   *
+```
+
+Loops should look like this,
+
+```java
+        // for first half
+        for (int i = 1; i <= n; i++) {
+            for (int j = n - i; j > 0; j--) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= i; k++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+
+        // for last half
+        for (int i = n - 1; i > 0; i--) {
+            for (int j = n - i; j > 0; j--) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= i; k++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+```
+
+#### 7.4 Floyid's Triangle
+
+Floyid's triangle look like this,
+
+```bash
+# n = 4
+1
+2 3
+4 5 6
+7 8 9 10
+```
+
+Here is the implementation,
+
+```java
+        int count = 1;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(count + " ");
+                count++;
+            }
+            System.out.println();
+        }
+```
+
+#### 7.5 Pascal Triangle
+
+Pascal triangle is basically a triangle where in each row, the column is the sum of previous row's same number column and the column before it.
+
+==However the first and last column of each row is always 1.==
+
+For a triangle like this,
+
+```bash
+    1
+   1 1
+  1 2 1
+ 1 3 3 1
+```
+
+Our code will look like this,
+
+```java
+        // We can either take row from the user or set a static value
+        // Using 2D array to generate Pascal triangle is the easy method
+        int[][] arr = new int[row][row];
+
+        for (int i = 0; i < row; i++) {
+            // first and last element of each row is 1
+            arr[i][0] = 1;
+            arr[i][i] = 1;
+
+            // loop to run in between 1st and last col
+            for (int j = 1; j < i; j++) {
+                /*
+                Each column is the sum of the previous row's column and the column before it.
+                That why it's [i-1][j-1] and [i - 1][j]
+                */
+                arr[i][j] = arr[i - 1][j - 1] + arr[i - 1][j];
+            }
+        }
+
+        // Print the 2D array, which will be our triangle
+        for (int i = 0; i < row; i++) {
+            for (int s = row - i; s > 0; s--) {
+                System.out.print(" ");
+            }
+
+            for (int j = 0; j <= i; j++) {
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
 ```
