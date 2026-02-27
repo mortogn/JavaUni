@@ -590,7 +590,7 @@ Here is the implementation,
 
 Pascal triangle is basically a triangle where in each row, the column is the sum of previous row's same number column and the column before it.
 
-==However the first and last column of each row is always 1.==
+<mark>However the first and last column of each row is always 1.</mark>
 
 For a triangle like this,
 
@@ -701,11 +701,11 @@ From the image,
 
 1. **ClassName** is the name of the class we need to create.
 2. **Properties** are the variables. UML diagram will include the visiblitiy notation (private/public), variable name and data type. It may also include the initial value of the variable.
-3. **Methods** are also similar. UML diagram will include visiblity notation, method name, return type, parameters (if it's required). ==Diagram might have method name that is the same as the class name. In that case, it will be treated as a _constructor_.==
+3. **Methods** are also similar. UML diagram will include visiblity notation, method name, return type, parameters (if it's required). <mark>Diagram might have method name that is the same as the class name. In that case, it will be treated as a _constructor_.</mark>
 4. **Inheritance** needs to be in focus as well. It shows which class will inherit what class.
-5. **Visiblity notation** will be showen in diagram with `+` and `-`. Here `+` means **Public** and `-` means **Private**. ==All the method and variables will follow this pattern.==
+5. **Visiblity notation** will be showen in diagram with `+` and `-`. Here `+` means **Public** and `-` means **Private**. <mark>All the method and variables will follow this pattern.</mark>
 
-==**Note:**== It is important to note that UML diagrams can contain,
+<mark>**Note:**</mark> It is important to note that UML diagrams can contain,
 
 - Initial Value
 - Constructor
