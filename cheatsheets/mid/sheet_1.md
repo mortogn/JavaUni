@@ -1,5 +1,17 @@
 # Java cheatsheet mid
 
+### Contents
+
+1. [Basic Syntax](#1-basic-syntax)
+2. [Number Theory](#2-number-theory)
+3. [Number Swapping](#3-number-swapping)
+4. [Leap Year Logic](#4-leap-year-logic)
+5. [Factorial of a Number](#5-factorial-of-a-number)
+6. [Palindrome Number](#6-palindrome-number)
+7. [Patterns](#7-patterns)
+8. [Algorithm](#8-algorithm)
+9. [UML](#9-uml-unified-modeling-language-for-java)
+
 ### 1. Basic Syntax
 
 #### 1.1 Hello World
