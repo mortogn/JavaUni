@@ -2,8 +2,10 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -29,6 +31,9 @@ public class Button extends JButton {
         setBorderPainted(false);
         setFocusPainted(false);
         setOpaque(false);
+        setMargin(new Insets(0, 0, 0, 0));
+
+        setFont(new Font("Arial", Font.BOLD, 14));
 
         addMouseListener(new MouseAdapter() {
             @Override
@@ -59,12 +64,4 @@ public class Button extends JButton {
         g2d.dispose();
     }
 
-    @Override
-    public Dimension getPreferredSize() {
-        Dimension d = super.getPreferredSize();
-        d.width += 15;
-        d.height += 10;
-
-        return d;
-    }
 }

@@ -1,12 +1,9 @@
 package ui;
 
 import javax.swing.*;
-
-import pages.HomePage;
-import pages.LoginPage;
-import pages.RegisterPage;
-
 import java.awt.*;
+
+import pages.*;
 
 public class MainFrame extends JFrame {
 
