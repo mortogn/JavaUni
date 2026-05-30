@@ -1,14 +1,113 @@
 package pages;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagLayout;
+
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
+import ui.Button;
 import ui.MainFrame;
+import util.GridBagUtil;
 
 public class RegisterPage extends JPanel {
-    private JLabel label = new JLabel("Hello, from Registerpage");
+    private static final int FIELD_HEIGHT = 40;
+    private static final int FIELD_WIDTH = 350;
+    private static final Dimension INPUT_SIZE = new Dimension(FIELD_WIDTH, FIELD_HEIGHT);
+
+    private JLabel pageTitle;
+    private JLabel pageDescription;
+
+    private JLabel statusLabel;
+
+    private JLabel fullnameLabel;
+    private JTextField fullnameField;
+
+    private JLabel emailLabel;
+    private JTextField emailField;
+
+    private JLabel passwordLabel;
+    private JPasswordField passwordField;
+
+    private Button registerButton;
 
     public RegisterPage(MainFrame frame) {
-        add(label);
+        initComponent();
+        styleComponents();
+        LayoutComponents();
     }
+
+    private void initComponent() {
+        pageTitle = new JLabel("Create an account");
+        pageDescription = new JLabel("Please fill in the details to create an account");
+        statusLabel = new JLabel("");
+
+        fullnameField = new JTextField();
+        fullnameLabel = new JLabel("Full name");
+
+        emailField = new JTextField();
+        emailLabel = new JLabel("Email");
+
+        passwordField = new JPasswordField();
+        passwordLabel = new JLabel("Password");
+
+        registerButton = new Button("Register");
+    }
+
+    private void styleComponents() {
+        pageTitle.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 30));
+        pageDescription.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 12));
+
+        fullnameField.setPreferredSize(INPUT_SIZE);
+        fullnameField.setBorder(inputBorder(fullnameField.getBorder()));
+        fullnameLabel.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 12));
+
+        emailField.setPreferredSize(INPUT_SIZE);
+        emailField.setBorder(inputBorder(emailField.getBorder()));
+        emailLabel.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 12));
+
+        passwordField.setPreferredSize(INPUT_SIZE);
+        passwordField.setBorder(inputBorder(passwordField.getBorder()));
+        passwordLabel.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 12));
+
+        registerButton.setPreferredSize(INPUT_SIZE);
+    }
+
+    private void LayoutComponents() {
+
+        GridBagUtil gbu = new GridBagUtil();
+
+        JPanel form = new JPanel(new GridBagLayout());
+        form.setBackground(Color.WHITE);
+        form.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
+
+        form.add(pageTitle, gbu.gbc(0, 0, 0, 0));
+        form.add(pageDescription, gbu.gbc(4, 0, 0, 0));
+
+        form.add(statusLabel, gbu.gbc(5, 0, 0, 0));
+
+        form.add(fullnameLabel, gbu.gbc(10, 0, 0, 0));
+        form.add(fullnameField, gbu.gbc(4, 0, 0, 0));
+
+        form.add(emailLabel, gbu.gbc(10, 0, 0, 0));
+        form.add(emailField, gbu.gbc(4, 0, 0, 0));
+        form.add(passwordLabel, gbu.gbc(10, 0, 0, 0));
+        form.add(passwordField, gbu.gbc(4, 0, 0, 0));
+
+        form.add(registerButton, gbu.gbc(20, 0, 0, 0));
+
+        setLayout(new GridBagLayout());
+        add(form);
+    }
+
+    private javax.swing.border.Border inputBorder(javax.swing.border.Border outer) {
+        return BorderFactory.createCompoundBorder(
+                outer,
+                BorderFactory.createEmptyBorder(0, 10, 0, 10));
+    }
+
 }

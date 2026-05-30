@@ -9,7 +9,7 @@ import ui.MainFrame;
 public class LoginPage extends JPanel {
 
     private static final int FIELD_HEIGHT = 40;
-    private static final int FIELD_WIDTH = 300;
+    private static final int FIELD_WIDTH = 350;
     private static final Dimension INPUT_SIZE = new Dimension(FIELD_WIDTH, FIELD_HEIGHT);
 
     private JLabel pageTitle;
@@ -17,41 +17,50 @@ public class LoginPage extends JPanel {
 
     private JLabel statusLabel;
 
-    private JLabel userNameFieldLabel;
-    private JTextField usernameField;
+    private JLabel emailLabel;
+    private JTextField emailField;
 
-    private JLabel passwordFieldLabel;
+    private JLabel passwordLabel;
     private JPasswordField passwordField;
 
     private Button loginButton;
 
     public LoginPage(MainFrame frame) {
+        initComponents();
+        styleComponents();
+        layoutComponents();
+    }
 
+    private void initComponents() {
         pageTitle = new JLabel("Welcome Back!");
-        pageTitle.setFont(new Font("Arial", Font.BOLD, 30));
-
         pageDescription = new JLabel("Please log in to continue");
-        pageDescription.setFont(new Font("Arial", Font.PLAIN, 12));
-
         statusLabel = new JLabel("");
 
-        usernameField = new JTextField(20);
-        usernameField.setPreferredSize(INPUT_SIZE);
-        usernameField.setBorder(inputBorder(usernameField.getBorder()));
+        emailField = new JTextField();
+        emailLabel = new JLabel("Email");
 
-        userNameFieldLabel = new JLabel("Username");
-        userNameFieldLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-
-        passwordField = new JPasswordField(20);
-        passwordField.setPreferredSize(INPUT_SIZE);
-        passwordField.setBorder(inputBorder(passwordField.getBorder()));
-
-        passwordFieldLabel = new JLabel("Password");
-        passwordFieldLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+        passwordField = new JPasswordField();
+        passwordLabel = new JLabel("Password");
 
         loginButton = new Button("Log in");
-        loginButton.setPreferredSize(INPUT_SIZE);
+    }
 
+    private void styleComponents() {
+        pageTitle.setFont(new Font("Arial", Font.BOLD, 30));
+        pageDescription.setFont(new Font("Arial", Font.PLAIN, 12));
+
+        emailField.setBorder(inputBorder(emailField.getBorder()));
+        emailField.setPreferredSize(INPUT_SIZE);
+        emailLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+
+        passwordField.setPreferredSize(INPUT_SIZE);
+        passwordField.setBorder(inputBorder(passwordField.getBorder()));
+        passwordLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+
+        loginButton.setPreferredSize(INPUT_SIZE);
+    }
+
+    private void layoutComponents() {
         JPanel form = new JPanel(new GridBagLayout());
         form.setBackground(Color.WHITE);
         form.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
@@ -62,10 +71,10 @@ public class LoginPage extends JPanel {
 
         form.add(statusLabel, gbc(0, 2, new Insets(8, 0, 0, 0)));
 
-        form.add(userNameFieldLabel, gbc(0, 3, new Insets(10, 0, 0, 0)));
-        form.add(usernameField, gbc(0, 4, new Insets(4, 0, 0, 0)));
+        form.add(emailLabel, gbc(0, 3, new Insets(10, 0, 0, 0)));
+        form.add(emailField, gbc(0, 4, new Insets(4, 0, 0, 0)));
 
-        form.add(passwordFieldLabel, gbc(0, 5, new Insets(10, 0, 0, 0)));
+        form.add(passwordLabel, gbc(0, 5, new Insets(10, 0, 0, 0)));
         form.add(passwordField, gbc(0, 6, new Insets(4, 0, 0, 0)));
         form.add(loginButton, gbc(0, 7, new Insets(10, 0, 10, 0)));
 

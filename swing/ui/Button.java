@@ -1,7 +1,6 @@
 package ui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -23,6 +22,10 @@ public class Button extends JButton {
     private int borderRadius = 15;
 
     public Button(String text) {
+        this(text, 150, 80);
+    }
+
+    public Button(String text, int width, int height) {
         super(text);
 
         setUI(new javax.swing.plaf.basic.BasicButtonUI());

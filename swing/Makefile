@@ -9,10 +9,10 @@ clean:
 	find . -name "*.class" -type f -delete
 
 compile: $(SRC)
-	$(JAVAC) $(SRC)
+	$(JAVAC) -cp ".:lib/*" $(SRC)
 
 run: clean compile
-	$(JAVA) $(CLASS)
+	$(JAVA) -cp ".:lib/*" $(CLASS)
 
 run-no-clean: compile
-	$(JAVA) $(CLASS)
+	$(JAVA) -cp ".:lib/*" $(CLASS)
