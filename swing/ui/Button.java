@@ -1,6 +1,7 @@
 package ui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -22,7 +23,7 @@ public class Button extends JButton {
     private int borderRadius = 15;
 
     public Button(String text) {
-        this(text, 150, 80);
+        this(text, 150, 40);
     }
 
     public Button(String text, int width, int height) {
@@ -35,6 +36,7 @@ public class Button extends JButton {
         setFocusPainted(false);
         setOpaque(false);
         setMargin(new Insets(0, 0, 0, 0));
+        setPreferredSize(new Dimension(width, height));
 
         setFont(new Font("Arial", Font.BOLD, 14));
 

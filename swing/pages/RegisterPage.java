@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import controller.AuthController;
 import ui.Button;
 import ui.MainFrame;
 import util.GridBagUtil;
@@ -18,6 +19,8 @@ public class RegisterPage extends JPanel {
     private static final int FIELD_HEIGHT = 40;
     private static final int FIELD_WIDTH = 350;
     private static final Dimension INPUT_SIZE = new Dimension(FIELD_WIDTH, FIELD_HEIGHT);
+
+    private final AuthController authController;
 
     private JLabel pageTitle;
     private JLabel pageDescription;
@@ -35,10 +38,16 @@ public class RegisterPage extends JPanel {
 
     private Button registerButton;
 
+    private MainFrame frame;
+
     public RegisterPage(MainFrame frame) {
+        this.frame = frame;
+        this.authController = new AuthController();
+
         initComponent();
         styleComponents();
         LayoutComponents();
+        initListeners();
     }
 
     private void initComponent() {
@@ -75,6 +84,33 @@ public class RegisterPage extends JPanel {
         passwordLabel.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 12));
 
         registerButton.setPreferredSize(INPUT_SIZE);
+    }
+
+    private void initListeners() {
+        registerButton.addActionListener(e -> handleRegister());
+    }
+
+    private void handleRegister() {
+        String email = emailField.getText().trim();
+        String password = new String(passwordField.getPassword()).trim();
+        String fullname = fullnameField.getText().trim();
+
+        if (email.isBlank() || password.isBlank() || fullname.isBlank()) {
+            statusLabel.setText("Please fill in all the fields");
+            statusLabel.setForeground(Color.RED);
+            return;
+        }
+
+        boolean success = authController.register(email, password, fullname);
+
+        if (!success) {
+            statusLabel.setText("Failed to register. Please try again.");
+            statusLabel.setForeground(Color.RED);
+            return;
+        }
+
+        frame.navigateTo("home");
+
     }
 
     private void LayoutComponents() {

@@ -1,6 +1,9 @@
 package pages;
 
 import javax.swing.*;
+
+import controller.AuthController;
+
 import java.awt.*;
 
 import ui.Button;
@@ -11,6 +14,10 @@ public class LoginPage extends JPanel {
     private static final int FIELD_HEIGHT = 40;
     private static final int FIELD_WIDTH = 350;
     private static final Dimension INPUT_SIZE = new Dimension(FIELD_WIDTH, FIELD_HEIGHT);
+
+    private final AuthController authController;
+
+    private MainFrame frame;
 
     private JLabel pageTitle;
     private JLabel pageDescription;
@@ -26,9 +33,14 @@ public class LoginPage extends JPanel {
     private Button loginButton;
 
     public LoginPage(MainFrame frame) {
+
+        this.frame = frame;
+        this.authController = new AuthController();
+
         initComponents();
         styleComponents();
         layoutComponents();
+        initListeners();
     }
 
     private void initComponents() {
@@ -42,7 +54,7 @@ public class LoginPage extends JPanel {
         passwordField = new JPasswordField();
         passwordLabel = new JLabel("Password");
 
-        loginButton = new Button("Log in");
+        loginButton = new Button("Log in", FIELD_WIDTH, FIELD_HEIGHT);
     }
 
     private void styleComponents() {
@@ -56,8 +68,6 @@ public class LoginPage extends JPanel {
         passwordField.setPreferredSize(INPUT_SIZE);
         passwordField.setBorder(inputBorder(passwordField.getBorder()));
         passwordLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-
-        loginButton.setPreferredSize(INPUT_SIZE);
     }
 
     private void layoutComponents() {
@@ -80,6 +90,31 @@ public class LoginPage extends JPanel {
 
         setLayout(new GridBagLayout());
         add(form);
+    }
+
+    private void initListeners() {
+        loginButton.addActionListener(e -> handleLogin());
+    }
+
+    private void handleLogin() {
+        String email = emailField.getText().trim();
+        String password = new String(passwordField.getPassword()).trim();
+
+        if (email.isBlank() || password.isBlank()) {
+            statusLabel.setText("Please fill in all the fields");
+            statusLabel.setForeground(Color.RED);
+            return;
+        }
+
+        boolean result = authController.login(email, password);
+
+        if (result) {
+            frame.navigateTo("home");
+        } else {
+            statusLabel.setText("Invalid email or password");
+            statusLabel.setForeground(Color.RED);
+        }
+
     }
 
     private javax.swing.border.Border inputBorder(javax.swing.border.Border outer) {

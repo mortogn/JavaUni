@@ -11,7 +11,7 @@ public class FileUtil {
             return content;
         } catch (IOException e) {
             System.err.println("Error reading file: " + e.getMessage());
-            return "";
+            return null;
         }
     }
 
