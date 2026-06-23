@@ -2,21 +2,13 @@
 
 ### Contents
 
-<!-- 1. Method overriding -->
-
-2.  Covariant Return Type
-       <!-- 3. Super Keyword -->
-       <!-- 3. Instance Initializer -->
-          <!-- 3. Final Keyword -->
-       <!-- 3. Abstract Class -->
-       <!-- 4. Interface -->
-    <!-- 3. Multi-Dimensional Array
-3.  Jagged Array -->
-4.  Recursion
-5.  String
-6.  StringBuffer
-7.  StringBuilder
-8.  Exception Handling
+1. [Polymorphism](#1-polymorphism)
+2. [Abstraction](#2-abstraction)
+3. [Encapsulation](#3-encapsulation)
+4. [Array](#4-array)
+5. [Recursion](#5-recursion)
+6. [String](#6-string)
+7. [Exception Handling](#7-exception-handling)
 
 ## 1. Polymorphism
 
