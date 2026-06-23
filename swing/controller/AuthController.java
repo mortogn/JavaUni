@@ -14,10 +14,11 @@ public class AuthController {
         User user = userServices.getUserByEmail(email);
 
         if (user != null && user.getPassword().equals(password)) {
+            Session.setCurrentUser(user);
             return true;
         }
 
-        Session.setCurrentUser(user);
+        Session.setCurrentUser(null);
 
         return false;
     }
