@@ -33,6 +33,39 @@ public class Child extends Parent{
 
 ### 1.2 Covariant Return Type
 
+With. Covariant return type, we can override a method to return a subtype. This helps with narrowing down the return type.
+
+```java
+class Animal {}
+class Dog extends Animal {}
+
+class AnimalShelter {
+    Animal getPet() {
+        return new Animal();
+    }
+}
+
+class DogShelter extends AnimalShelter {
+    @Override // <- Optional
+    // Returning Dog, that is a subclass of animal. This is covariant return
+    Dog getPet() {
+        return new Dog();
+    }
+}
+```
+
+We can also use parent type when initializing an object.
+
+```java
+AnimalShelter shelter = new DogShelter(); // DogShelter is also an animal shelter
+Animal pet = shelter.getPet(); // Dog is also an animal
+
+// We can also do this
+DogShelter dogShelter = new DogShelter();
+Dog d = dogShelter.getPet(); // valid
+Animal a = dogShelter.getPet(); // valid
+```
+
 ### 1.3 Super Keyword
 
 With super keyword, one can access the properties and methods of it's parent class. It helps when a method is overriden in child class. We can also call parent's constructor with it.
