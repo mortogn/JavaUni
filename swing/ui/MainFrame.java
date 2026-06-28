@@ -9,6 +9,7 @@ public class MainFrame extends JFrame {
 
     private CardLayout cardLayout;
     private JPanel mainPanel;
+    private HomePage homePage;
 
     public MainFrame() {
         setTitle("Journal");
@@ -19,9 +20,13 @@ public class MainFrame extends JFrame {
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
 
-        mainPanel.add(new LoginPage(this), "login");
-        mainPanel.add(new RegisterPage(this), "register");
-        mainPanel.add(new HomePage(this), "home");
+        LoginPage loginPage = new LoginPage(this);
+        RegisterPage registerPage = new RegisterPage(this);
+        homePage = new HomePage(this);
+
+        mainPanel.add(loginPage, "login");
+        mainPanel.add(registerPage, "register");
+        mainPanel.add(homePage, "home");
 
         navigateTo("home");
 
@@ -30,6 +35,10 @@ public class MainFrame extends JFrame {
     }
 
     public void navigateTo(String page) {
+        if ("home".equals(page)) {
+            homePage.refreshSessionUI();
+        }
+
         cardLayout.show(mainPanel, page);
     }
 
