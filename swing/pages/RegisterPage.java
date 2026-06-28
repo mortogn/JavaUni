@@ -1,14 +1,10 @@
 package pages;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import controller.AuthController;
 import ui.Button;
@@ -21,6 +17,8 @@ public class RegisterPage extends JPanel {
     private static final Dimension INPUT_SIZE = new Dimension(FIELD_WIDTH, FIELD_HEIGHT);
 
     private final AuthController authController;
+
+    private JButton homeButton;
 
     private JLabel pageTitle;
     private JLabel pageDescription;
@@ -38,6 +36,8 @@ public class RegisterPage extends JPanel {
 
     private Button registerButton;
 
+    private JLabel loginLabel;
+
     private MainFrame frame;
 
     public RegisterPage(MainFrame frame) {
@@ -46,11 +46,14 @@ public class RegisterPage extends JPanel {
 
         initComponent();
         styleComponents();
-        LayoutComponents();
+        layoutComponents();
         initListeners();
     }
 
     private void initComponent() {
+
+        homeButton = new JButton("<- Home");
+
         pageTitle = new JLabel("Create an account");
         pageDescription = new JLabel("Please fill in the details to create an account");
         statusLabel = new JLabel("");
@@ -65,9 +68,14 @@ public class RegisterPage extends JPanel {
         passwordLabel = new JLabel("Password");
 
         registerButton = new Button("Register");
+
+        loginLabel = new JLabel("Already have an account? Log in");
     }
 
     private void styleComponents() {
+
+        homeButton.setFont(new Font("Arial", Font.PLAIN, 12));
+
         pageTitle.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 30));
         pageDescription.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 12));
 
@@ -88,6 +96,12 @@ public class RegisterPage extends JPanel {
 
     private void initListeners() {
         registerButton.addActionListener(e -> handleRegister());
+        loginLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                frame.navigateTo("login");
+            }
+        });
     }
 
     private void handleRegister() {
@@ -113,7 +127,7 @@ public class RegisterPage extends JPanel {
 
     }
 
-    private void LayoutComponents() {
+    private void layoutComponents() {
 
         GridBagUtil gbu = new GridBagUtil();
 
@@ -137,7 +151,27 @@ public class RegisterPage extends JPanel {
         form.add(registerButton, gbu.gbc(20, 0, 0, 0));
 
         setLayout(new GridBagLayout());
-        add(form);
+
+        Dimension formSize = form.getPreferredSize();
+        Dimension loginSize = new Dimension(formSize.width, loginLabel.getPreferredSize().height);
+        loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        loginLabel.setPreferredSize(loginSize);
+        loginLabel.setMaximumSize(loginSize);
+
+        JPanel formContainer = new JPanel();
+        formContainer.setLayout(new BoxLayout(formContainer, BoxLayout.Y_AXIS));
+
+        homeButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+        form.setAlignmentX(Component.LEFT_ALIGNMENT);
+        loginLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        formContainer.add(homeButton);
+        formContainer.add(Box.createVerticalStrut(10));
+        formContainer.add(form);
+        formContainer.add(Box.createVerticalStrut(10));
+        formContainer.add(loginLabel);
+
+        add(formContainer);
     }
 
     private javax.swing.border.Border inputBorder(javax.swing.border.Border outer) {

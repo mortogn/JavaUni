@@ -1,17 +1,11 @@
 package ui;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Insets;
-import java.awt.RenderingHints;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 
-import javax.swing.JButton;
+import javax.swing.*;
 
 public class Button extends JButton {
 
@@ -35,10 +29,11 @@ public class Button extends JButton {
         setBorderPainted(false);
         setFocusPainted(false);
         setOpaque(false);
-        setMargin(new Insets(0, 0, 0, 0));
-        setPreferredSize(new Dimension(width, height));
+        // setMargin(new Insets(0, 0, 0, 0));
+        // setPreferredSize(new Dimension(width, height));
 
         setFont(new Font("Arial", Font.BOLD, 14));
+        setBorder(BorderFactory.createEmptyBorder(8, 20, 8, 20));
 
         addMouseListener(new MouseAdapter() {
             @Override
@@ -67,6 +62,19 @@ public class Button extends JButton {
 
         super.paintComponent(g2d);
         g2d.dispose();
+    }
+
+    public void setColors(
+            Color normalColor,
+            Color hoverColor,
+            Color foreground) {
+        this.normalColor = normalColor;
+        this.hoverColor = hoverColor;
+        this.foreground = foreground;
+        this.currentColor = normalColor;
+
+        setForeground(foreground);
+        repaint();
     }
 
 }

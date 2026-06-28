@@ -1,34 +1,66 @@
 package pages;
 
-import java.awt.FlowLayout;
+import java.awt.*;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import ui.Button;
 import ui.MainFrame;
 
 public class HomePage extends JPanel {
 
-    private JLabel label = new JLabel("Hello, from home");
-    private Button loginNavButton = new Button("Go to Login");
-    private Button registerNavButton = new Button("Go to Register");
+    private JPanel header = new JPanel();
+    private JLabel logo = new JLabel("Journal");
+
+    private Button createButton = new Button("Create New Journal");
+    private Button loginButton = new Button("Login");
+
+    private MainFrame frame;
 
     public HomePage(MainFrame frame) {
-        setLayout(new FlowLayout());
+        this.frame = frame;
 
-        loginNavButton.addActionListener(e -> {
-            frame.navigateTo("login");
-        });
+        setLayout(new BorderLayout());
 
-        registerNavButton.addActionListener(e -> {
-            frame.navigateTo("register");
-        });
+        initHeader();
+        styleComponents();
+        initListeners();
 
-        add(label);
+    }
 
-        add(loginNavButton);
-        add(registerNavButton);
+    private void initHeader() {
+        header.setLayout(new BorderLayout());
+        header.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        header.add(logo, BorderLayout.WEST);
+
+        JPanel actionsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        actionsPanel.setOpaque(false);
+
+        actionsPanel.add(createButton);
+        actionsPanel.add(loginButton);
+
+        header.add(actionsPanel, BorderLayout.EAST);
+
+        add(header, BorderLayout.NORTH);
+    }
+
+    private void styleComponents() {
+        logo.setFont(new Font("Arial", Font.BOLD, 30));
+        createButton.setColors(new Color(242, 242, 242), new Color(230, 230, 230), Color.BLACK);
+
+    }
+
+    private void initListeners() {
+        createButton.addActionListener(e -> handleNavigationToCreate());
+        loginButton.addActionListener(e -> handleNavigationToLogin());
+    }
+
+    private void handleNavigationToLogin() {
+        frame.navigateTo("login");
+    }
+
+    private void handleNavigationToCreate() {
+        frame.navigateTo("register");
     }
 
 }

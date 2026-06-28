@@ -1,4 +1,4 @@
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 import ui.MainFrame;
 
