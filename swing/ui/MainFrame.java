@@ -24,11 +24,14 @@ public class MainFrame extends JFrame {
         RegisterPage registerPage = new RegisterPage(this);
         homePage = new HomePage(this);
 
+        CreateJournalPage createJournalPage = new CreateJournalPage(this);
+
         mainPanel.add(loginPage, "login");
         mainPanel.add(registerPage, "register");
         mainPanel.add(homePage, "home");
+        mainPanel.add(createJournalPage, "createJournal");
 
-        navigateTo("home");
+        navigateTo("createJournal");
 
         add(mainPanel);
 

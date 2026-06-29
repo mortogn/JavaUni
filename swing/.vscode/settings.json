@@ -1,3 +1,12 @@
 {
-  "java.project.referencedLibraries": ["lib/**/*.jar"]
+  "java.project.referencedLibraries": ["lib/**/*.jar"],
+  "java.jdt.ls.vmargs": "-Xms512m -Xmx2G -XX:+UseG1GC",
+  "java.completion.maxResults": 100,
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
+  },
+  "editor.suggestOnTriggerCharacters": true
 }

@@ -96,7 +96,7 @@ public class HomePage extends JPanel {
     }
 
     private void handleNavigationToCreate() {
-        JOptionPane.showMessageDialog(this, "Create Journal is coming soon.");
+        frame.navigateTo("createJournal");
     }
 
 }
