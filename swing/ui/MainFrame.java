@@ -3,6 +3,7 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
+import model.Journal;
 import pages.*;
 
 public class MainFrame extends JFrame {
@@ -10,6 +11,7 @@ public class MainFrame extends JFrame {
     private CardLayout cardLayout;
     private JPanel mainPanel;
     private HomePage homePage;
+    private JournalDetailPage journalDetailPage;
 
     public MainFrame() {
         setTitle("Journal");
@@ -23,6 +25,7 @@ public class MainFrame extends JFrame {
         LoginPage loginPage = new LoginPage(this);
         RegisterPage registerPage = new RegisterPage(this);
         homePage = new HomePage(this);
+        journalDetailPage = new JournalDetailPage(this);
 
         CreateJournalPage createJournalPage = new CreateJournalPage(this);
 
@@ -30,8 +33,9 @@ public class MainFrame extends JFrame {
         mainPanel.add(registerPage, "register");
         mainPanel.add(homePage, "home");
         mainPanel.add(createJournalPage, "createJournal");
+        mainPanel.add(journalDetailPage, "journalDetail");
 
-        navigateTo("createJournal");
+        navigateTo("home");
 
         add(mainPanel);
 
@@ -43,6 +47,11 @@ public class MainFrame extends JFrame {
         }
 
         cardLayout.show(mainPanel, page);
+    }
+
+    public void navigateToJournalDetail(Journal journal) {
+        journalDetailPage.setJournal(journal);
+        navigateTo("journalDetail");
     }
 
 }

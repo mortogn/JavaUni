@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import model.Journal;
 import model.User;
 import services.JournalServices;
@@ -25,7 +27,7 @@ public class JournalController {
         journalServices.saveJournal(journal);
     }
 
-    public void getJournals() {
-        journalServices.getJournals();
+    public List<Journal> getJournals() {
+        return journalServices.getJournals();
     }
 }
